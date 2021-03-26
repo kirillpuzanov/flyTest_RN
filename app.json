@@ -1,0 +1,12 @@
+{
+  "name": "skyTest_RN_TS_MIN",
+  "displayName": "skyTest_RN_TS_MIN",
+  "expo": {
+    "name": "skyTest_RN_TS_MIN",
+    "slug": "skyTest_RN_TS_MIN",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
