@@ -6,13 +6,13 @@ import {FavouritesScreen} from '../screens/favouritesScreen';
 import {BrowseScreen} from '../screens/browseScreen';
 
 
-const RootStack = createStackNavigator();
-const TicketStack = createStackNavigator();
-const TicketsStack = createMaterialTopTabNavigator();
+const RootStack = createStackNavigator()
+const TicketStack = createStackNavigator()
+const TicketsStack = createMaterialTopTabNavigator()
 
 
 const TicketsStackScreen = () => (
-    <TicketsStack.Navigator >
+    <TicketsStack.Navigator>
         <TicketsStack.Screen name='Favourites' component={FavouritesScreen}/>
         <TicketsStack.Screen name='Browse' component={BrowseScreen}/>
     </TicketsStack.Navigator>
@@ -26,12 +26,15 @@ const TicketStackScreen = () => (
 
 export const RootStackScreen = () => (
     <RootStack.Navigator>
-        <RootStack.Screen name="Flights" component={TicketsStackScreen} options={{
-            headerTitleAlign: 'center', headerTitleStyle: {fontFamily: 'Abel_Regular', fontSize: 19},
-            headerStyle: {elevation: 0}}}
+        <RootStack.Screen name="Flights" component={TicketsStackScreen}
+                          options={{
+                              headerTitleAlign: 'center',
+                              headerTitleStyle: {fontFamily: 'Abel_Regular', fontSize: 19},
+                              headerStyle: {elevation: 0}
+                          }}
         />
 
         <RootStack.Screen options={{headerShown: false}}
                           name="Ticket" component={TicketStackScreen}/>
     </RootStack.Navigator>
-);
+)

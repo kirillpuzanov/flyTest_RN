@@ -7,19 +7,19 @@ const settings = {
         'x-rapidapi-key': '5d1f279840msh2a52f30f8dcab2ap1c114ajsn9577e4e517c2',
         'x-rapidapi-host': 'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com'
     }
-};
+}
 const instance = axios.create({
     baseURL: 'https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/RU/RUB/RU/SVO-sky/JFK-sky/',
     ...settings
-});
+})
 
 export const flyAPI = {
     getTickets() {
         return instance.get<TicketsDataType>(DATE).then(res => {
             return res.data;
-        });
+        })
     }
-};
+}
 
 
 export type TicketsDataType = {

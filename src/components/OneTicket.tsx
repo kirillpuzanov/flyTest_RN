@@ -7,7 +7,7 @@ import moment from 'moment';
 import {Heart} from './Heart';
 
 
-export const OneTicket: React.FC<OneTicketType> = ({item, navigation: {navigate}}) => {
+export const OneTicket: React.FC<OneTicketType> = React.memo(({item, navigation: {navigate}}) => {
 
     const {
         id,
@@ -32,8 +32,9 @@ export const OneTicket: React.FC<OneTicketType> = ({item, navigation: {navigate}
                         <AntDesign name="arrowright" size={20} color="#C4C4C4"/>
                         <TextAbel style={{fontSize: 17}}>{arrivalPointName}</TextAbel>
                     </View>
-                    <TextSF
-                        style={s.text}>{departurePoint} - {moment(departureDate).format('DD MMMM, YYYY')} - {moment(departureDate).format('HH : mm')}</TextSF>
+                    <TextSF style={s.text}>
+                        {departurePoint} - {moment(departureDate).format('DD MMMM, YYYY')} - {moment(departureDate).format('HH : mm')}
+                    </TextSF>
                     <TextSF style={s.text}>{carriers}</TextSF>
                 </View>
             </View>
@@ -45,7 +46,7 @@ export const OneTicket: React.FC<OneTicketType> = ({item, navigation: {navigate}
             <Heart ticketId={id} favourites={favourites}/>
         </TouchableOpacity>
     )
-}
+})
 
 const s = StyleSheet.create({
     oneTicket: {

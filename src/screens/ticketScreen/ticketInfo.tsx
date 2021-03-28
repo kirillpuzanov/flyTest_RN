@@ -5,15 +5,18 @@ import {AntDesign} from '@expo/vector-icons';
 import {TicketDomainType} from '../../store/flyReducer';
 import moment from 'moment';
 
-export const TicketInfo: React.FC<TicketInfoType> = ({ticket}) => {
+export const TicketInfo: React.FC<TicketInfoType> = React.memo(({ticket}) => {
     const {
         departurePoint,
         departurePointName,
         departureDate,
+        arrivalPoint,
+        arrivalPointName,
     } = ticket
+
     return (
         <View style={styles.ticketInfo}>
-            <View style={{paddingLeft:15}}>
+            <View style={{paddingLeft: 15}}>
                 <TextSF>{moment(departureDate).format('DD MMMM, YYYY')}</TextSF>
                 <TextAbel style={styles.place}>{departurePoint}</TextAbel>
                 <TextSF>{departurePointName}</TextSF>
@@ -23,12 +26,12 @@ export const TicketInfo: React.FC<TicketInfoType> = ({ticket}) => {
             </View>
             <View>
                 <TextSF>{moment(departureDate).format('hh:mm')}</TextSF>
-                <TextAbel style={styles.place}>JFK</TextAbel>
-                <TextSF>New York City</TextSF>
+                <TextAbel style={styles.place}>{arrivalPoint}</TextAbel>
+                <TextSF style={{paddingRight: 20}}>{arrivalPointName} City</TextSF>
             </View>
         </View>
     )
-}
+})
 const styles = StyleSheet.create({
     ticketInfo: {
         flexDirection: 'row',
@@ -45,5 +48,5 @@ const styles = StyleSheet.create({
     }
 })
 type TicketInfoType = {
-    ticket:TicketDomainType
+    ticket: TicketDomainType
 }

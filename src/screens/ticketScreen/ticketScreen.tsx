@@ -5,17 +5,18 @@ import {TicketPrice} from './ticketPrice';
 import {Heart} from '../../components/Heart';
 import {useSelector} from 'react-redux';
 import {getTickets} from '../../store/flySelectors';
-import Swiper from 'react-native-web-swiper';
+import {TicketSlider} from '../../components/ticketSlider';
 
 
 export const TicketScreen: React.FC<TicketScreenType> = ({route}) => {
-    // id через парамеиры навигации, чтобы не создавать отдельную переменную в redux state для selectedTicket
+    // id через параметры навигации, чтобы не создавать отдельную переменную в redux state для selectedTicket
     const {id} = route.params.item
     // TS не даёт найти find .. выход - filter
     const selectedTicket = useSelector(getTickets).filter(el => el.id === id)[0]
     const {minPrice, favourites} = selectedTicket
     return (
         <View style={s.wrap}>
+
             <Image source={require('../../../assets/ticketScreen.jpg')} style={s.img}/>
             <View style={s.inner}>
                 <TicketInfo ticket={selectedTicket}
@@ -23,8 +24,9 @@ export const TicketScreen: React.FC<TicketScreenType> = ({route}) => {
                 <TicketPrice price={minPrice}/>
                 <TicketSlider/>
                 <Heart ticketId={id} favourites={favourites} styles={{zIndex: 100, top: 10, right: 10}}/>
+                <StatusBar barStyle={'light-content'} translucent backgroundColor="transparent"/>
             </View>
-            <StatusBar barStyle={'light-content'} translucent backgroundColor="transparent"/>
+
         </View>
     )
 }
@@ -60,39 +62,3 @@ const s = StyleSheet.create({
 })
 
 
-export const TicketSlider = () => {
-
-
-    return (
-        <View style={styles.container}>
-            <Swiper
-                from={1}
-                minDistanceForAction={0.1}
-                controlsEnabled={false}
-                controlsProps={{}}
-            >
-                <Image style={styles.img}  source={require('../../../assets/1.jpg')}/>
-                <Image style={styles.img}  source={require('../../../assets/4.jpg')}/>
-                <Image style={styles.img}  source={require('../../../assets/3.jpg')}/>
-                <Image style={styles.img}  source={require('../../../assets/2.jpg')}/>
-            </Swiper>
-        </View>
-    );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop:10,
-        width:'100%'
-    },
-    img: {
-        flex:1,
-        flexDirection:'row',
-        alignItems:"center",
-        justifyContent:"space-around",
-        width:'100%',
-        borderRadius:8
-    }
-
-});

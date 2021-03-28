@@ -4,7 +4,9 @@ import React from 'react';
 
 export const FavouritesNotFound = () => (
     <View style={styles.wrap}>
-        <TextSF style={{marginTop: 40, fontSize: 28, fontStyle: 'italic'}}>В избранном пока нет данных...</TextSF>
+        <TextSF style={{marginTop: 40, fontSize: 28, fontStyle: 'italic', paddingLeft: 10}}>
+            Добавьте подходящие билеты в избранное,чтобы не пропустить акции и спец.предлжения...
+        </TextSF>
         <Image style={styles.img} source={require('../../assets/no-results.png')}/>
     </View>
 
@@ -18,6 +20,5 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30,
     }
 })

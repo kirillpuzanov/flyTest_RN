@@ -4,7 +4,7 @@ import {FontAwesome} from '@expo/vector-icons';
 import {flyActions} from '../store/flyReducer';
 import {useDispatch} from 'react-redux';
 
-export const Heart: React.FC<HeartType> = ({favourites, ticketId, styles}) => {
+export const Heart: React.FC<HeartType> = React.memo(({favourites, ticketId, styles}) => {
     const dispatch = useDispatch()
     const handlerHeart = () => {
         dispatch(flyActions.toggleFavorite(ticketId))
@@ -17,7 +17,7 @@ export const Heart: React.FC<HeartType> = ({favourites, ticketId, styles}) => {
             }
         </TouchableOpacity>
     )
-}
+})
 type HeartType = {
     favourites: boolean
     ticketId: string

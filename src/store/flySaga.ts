@@ -3,7 +3,6 @@ import {flyAPI, TicketsDataType} from '../api/flyAPI';
 import {flyActions, TicketsDataDomainType} from './flyReducer';
 
 
-
 export function* fetchFlyData() {
     yield put(flyActions.setLoading(true));
     try {
@@ -18,13 +17,12 @@ export function* fetchFlyData() {
 //  активатор - WatcherSaga  с UI
 export const fetchData = () => ({type: 'FLY_DATA/SAGA'});
 
-
 export function* flyWatcherSaga() {
     yield takeEvery('FLY_DATA/SAGA', fetchFlyData);
 }
 
 // DTO, преобразуем серверные данные для удобства работы на фронте
-// возвращаем 1 [] => со всеми билетами и необходимыми данными для отрисовки
+// возвращаем 1-arr [{..},{..},{..}...] => со всеми билетами и упакованными данными, необходимые для отрисовки
 export function transformDataHelper(data: TicketsDataType):TicketsDataDomainType {
     return data.Quotes.map(el => {
         return {

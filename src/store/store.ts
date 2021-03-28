@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers,compose, createStore, Store} from 'redux';
+import {applyMiddleware, combineReducers, compose, createStore, Store} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import {all} from 'redux-saga/effects';
 import {flyWatcherSaga} from './flySaga';
@@ -14,7 +14,6 @@ const sagaSagaMiddleware = createSagaMiddleware();
 // redux dev-tools
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 export const store: Store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaSagaMiddleware)));
-// export const store: Store = createStore(rootReducer, applyMiddleware(sagaSagaMiddleware));
 
 sagaSagaMiddleware.run(rootWatcher);
 
@@ -22,6 +21,7 @@ function* rootWatcher() {
     yield all([flyWatcherSaga()]);
 }
 
+// упрощение типизации action
 export type AppRootStateType = ReturnType<typeof rootReducer>
 export type InferActionsTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
 

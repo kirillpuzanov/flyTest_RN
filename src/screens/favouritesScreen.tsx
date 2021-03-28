@@ -9,6 +9,7 @@ import {FavouritesNotFound} from '../components/FavouritesNotFound';
 
 
 export const FavouritesScreen: React.FC<PropsType> = ({navigation}) => {
+
     const tickets = useSelector(getTickets)
     const favouritesTickets = tickets.filter(el => el.favourites)
 
@@ -18,11 +19,12 @@ export const FavouritesScreen: React.FC<PropsType> = ({navigation}) => {
     return (
         <View style={s.wrap}>
             <FlatList data={favouritesTickets}
+                      keyExtractor={el => el.id}
                       renderItem={({item}) =>
                           <OneTicket item={item} navigation={navigation}/>}
-                      keyExtractor={el => el.id}
+
             />
-            <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'}/>
+            <StatusBar barStyle={'dark-content'} translucent backgroundColor="transparent"/>
         </View>
     )
 }

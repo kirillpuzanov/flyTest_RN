@@ -30,9 +30,7 @@ export const flyActions = {
     toggleFavorite: (ticketId: string) => ({
         type: 'FLY/TOGGLE_FAVOURITES', payload: ticketId
     } as const),
-    // unfollowFavorite: (ticketId: string) => ({
-    //     type: 'FLY/UNFOLLOW_FAVORITE', payload: ticketId
-    // } as const),
+
     setError: (error: string) => ({
         type: 'FLY/SET_ERROR', payload: error
     } as const),
@@ -48,7 +46,7 @@ type ActionsType = InferActionsTypes<typeof flyActions>
 export type TicketsDataDomainType = TicketDomainType[]
 export type TicketDomainType = {
     id: string
-    minPrice:number
+    minPrice: number
     departurePoint: string
     departurePointName: string
     arrivalPoint: string
